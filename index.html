@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="weatherApp"> <!--2-->
+    <head>
+        
+        <title>Weather Around the World</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+        
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" >
+        <link  rel="stylesheet" href="css/app.css">
+        <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            html, body, input, select, textarea
+            {
+                font-size: 1.05em !important;
+            }
+        </style>
+        
+        <!-- load angular via CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.7.0/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"> </script>
+        <script src="app.js"></script>
+        <script type="text/javascript" src="Services/weatherQueryService.js"></script>
+        
+    </head>
+    <body>
+        
+        <header>
+			<nav class="navbar navbar-dark bg-dark text-white">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" ui-sref="home">Weather Around the World</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a ui-sref="home" class="text-white"> Home</a></li>
+				</ul>
+			</div>
+			</nav>
+		</header>
+        <br>
+        <div class="container">
+            <div ui-view></div> <!--6-->
+
+		</div>
+
+    </body>
+</html>

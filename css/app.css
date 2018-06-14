@@ -1,0 +1,27 @@
+.card-body{
+    
+    display: flex;
+    vertical-align: middle;
+}
+
+.wi{
+    font-size:4em;
+    padding-bottom:10px;
+}
+
+h5:first-letter{
+    
+    text-transform:capitalize;
+}
+
+.wi-day-cloudy{
+    padding-bottom:0px;
+    padding-top:10px;
+    
+}
+
+a:hover{
+    
+   text-decoration: none;
+}
+
