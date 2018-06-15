@@ -30,19 +30,20 @@ weatherApp.controller('homeController',['$scope','cityService',function($scope,c
 }]);
 
 
-weatherApp.controller('forecastController',['$scope','cityService','weatherQueryService',function($scope,cityService,weatherQueryService){  
+weatherApp.controller('forecastController',['$scope','cityService','weatherQueryService','timeQueryService',function($scope,cityService,weatherQueryService,timeQueryService){  
     $scope.city=cityService.city;
     $scope.key="adb8501eb9a6f88ec2ea8ab9bd4754cb";
-    
+    $scope.displayInfo=false;
     $scope.weatherObject={};
     var weatherFactory=weatherQueryService.getInstance();
-    weatherFactory.fetchWeather({city:$scope.city},handleSuccess,handleError); //Query Data from JSON
+    var timeOffsetFactory=timeQueryService.getInstance();
     
-    function handleSuccess(data){
+    $scope.weatherObject=weatherFactory.fetchWeather({city:$scope.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
+   
+    console.log($scope.weatherObject);
+    
+    function handleWeatherSuccess(data){
         $scope.display=true;
-        $scope.weatherObject=data;
-        console.log($scope.weatherObject);
-        
         $scope.tempInCelcius=kelvinToCelcius($scope.weatherObject.main.temp);
         definirCouleur($scope.tempInCelcius);
         
@@ -50,13 +51,31 @@ weatherApp.controller('forecastController',['$scope','cityService','weatherQuery
         
         $scope.country=$scope.weatherObject.sys.country;
         
+        
+         
        
     }
-    function handleError(){
+    function handleWeatherError(){
          console.log("Error");
          $scope.display=false;
          
     }
+    
+     
+    function giveTime(){
+       $scope.displayInfo=true; $scope.timeOffsetObject=timeOffsetFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
+    }
+    
+    $scope.timeFunction=giveTime;
+    
+   function handleTimeOffsetSuccess(){
+        
+            
+   }
+   function handleTimeOffsetError(){
+       
+       console.log("Error Time Offset Query")
+   }
    
     function kelvinToCelcius(temperatureInKelvin){
         
@@ -67,20 +86,23 @@ weatherApp.controller('forecastController',['$scope','cityService','weatherQuery
     function definirCouleur(temperatureCelcius){
         var card= document.getElementById('cardMeteo');
         var button=document.getElementById('buttonForecast');
+         var info=document.getElementById('information');
         if (temperatureCelcius<=20){
             
             card.style.backgroundColor='#007bff';
             button.style.backgroundColor='#007bff';
+            info.style.backgroundColor='#007bff';
             
         }
         else if (temperatureCelcius>20 && temperatureCelcius<=30){
             card.style.backgroundColor='#ffc107';
             button.style.backgroundColor='#ffc107';
-            
+            info.style.backgroundColor='#ffc107';
         }
         else {
             card.style.backgroundColor='#dc3545';
             button.style.backgroundColor='#dc3545';
+            info.style.backgroundColor='#dc3545';
         }
     }
     

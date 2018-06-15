@@ -1,34 +1,96 @@
 
 
-
-
-<div class="card col-md-6 text-white" id="cardMeteo" ng-show="display===true">
+<div class="container" ng-show="display===true">
+    <div class="row">
     
-    
-  <div class="card-body">
-        <div class="container">
-            <div class="row">
-                  <div class="col-md-6">
-                    <h5 class="card-title">{{city}},{{country}}</h5>
-                    <h5 class="card-text">{{tempInCelcius}}&deg C</h5>
-                  </div>
+        <div class="card col-md-5  text-white" id="cardMeteo" >
 
-                   <div class="col-md-6 text-center">
-                    <i class="wi wi-day-sunny" ng-if="weatherDescription==='clear sky'"></i>
-                    <i class="wi wi-day-cloudy" ng-if="weatherDescription==='few clouds'||weatherDescription==='scattered clouds'"></i>
-                    <i class="wi wi-cloud" ng-if="weatherDescription==='broken clouds'|| weatherDescription==='overcast clouds'"></i>
-                    <i class="wi wi-showers" ng-if="weatherDescription==='shower rain' || weatherDescription==='shower rain'||weatherDescription==='light rain'||weatherDescription==='light intensity drizzle'"></i>
-                    <i class="wi wi-rain" ng-if="weatherDescription==='rain'"></i>
-                    <i class="wi wi-storm-showers" ng-if="weatherDescription==='thunderstorm'"></i>
-                    <i class="wi wi-snow" ng-if="weatherDescription==='snow'"></i>
-                    <i class="wi wi-smog" ng-if="weatherDescription==='mist'"></i>
-                    <i class="wi wi-day-haze" ng-if="weatherDescription==='haze'"></i>
-                  </div>
-            </div>
+
+          <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                          <div class="col-md-6">
+                            <h4 class="card-title">{{city}},{{country}}</h4>
+                            <h4 class="card-text">{{tempInCelcius}}&deg C</h4>
+                          </div>
+
+                           <div class="col-md-4 text-center mr-0 ">
+                            <i class="wi wi-day-sunny" ng-if="weatherDescription==='clear sky'"></i>
+                            <i class="wi wi-day-cloudy" ng-if="weatherDescription==='few clouds'||weatherDescription==='scattered clouds'"></i>
+                            <i class="wi wi-cloud" ng-if="weatherDescription==='broken clouds'|| weatherDescription==='overcast clouds' || weatherDescription=== 'drizzle'"></i>
+                            <i class="wi wi-showers" ng-if="weatherDescription==='shower rain' || weatherDescription==='shower rain'||weatherDescription==='light rain'||weatherDescription==='light intensity drizzle' || weatherDescription==='light intensity shower rain'"></i>
+                            <i class="wi wi-rain" ng-if="weatherDescription==='rain'"></i>
+                            <i class="wi wi-storm-showers" ng-if="weatherDescription==='thunderstorm' || weatherDescription==='thunderstorm with light rain' "></i>
+                            <i class="wi wi-snow" ng-if="weatherDescription==='snow'"></i>
+                            <i class="wi wi-smog" ng-if="weatherDescription==='mist'"></i>
+                            <i class="wi wi-day-haze" ng-if="weatherDescription==='haze'"></i>
+                          </div>
+                        
+                          <div class="col-md-12">
+                              <a ng-show="displayInfo===false" ng-click="timeFunction()"><i id="downArror"class="fa fa-chevron-down"></i></a>
+                              <a ng-show="displayInfo===true" ng-click="displayInfo=false"><i class="fa fa-chevron-up"></i></a>
+                          </div>
+                
+                         <div  id="information" class="col-md-12 text-white mt-2" ng-show="displayInfo===true">
+                 
+                                <div class="card-text">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <i class="wi wi-time-2"></i>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5 >{{weatherObject.dt|date:'HH:mm:ss'}}</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <i class="wi wi-thermometer"></i> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5 >{{weatherObject.wind.speed}} %</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <i class="wi wi-humidity"></i>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5>{{weatherObject.main.humidity}} %</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <i class="wi wi-strong-wind"></i>
+                                            </div>  
+                                            
+                                            <div class="col-md-6">
+                                                <h5>{{weatherObject.wind.speed}} m/s</h5>
+                                            </div>
+                                        </div>
+
+                                </div>
+            
+                 
+                        </div>
+                    </div>
+
+                </div>
+          </div>
             
         </div>
-  </div>
+        
+    </div>
+    
+         
+    
+    
+   
 </div>
+
+
    
 <div class="alert alert-danger col-md-6" id="error" ng-show="display===false"> This City Doesn't Exist! </div>
 

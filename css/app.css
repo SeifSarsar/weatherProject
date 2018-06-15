@@ -9,7 +9,7 @@
     padding-bottom:10px;
 }
 
-h5:first-letter{
+h4:first-letter{
     
     text-transform:capitalize;
 }
@@ -21,7 +21,34 @@ h5:first-letter{
 }
 
 a:hover{
-    
+   cursor:pointer; 
    text-decoration: none;
 }
+
+.col-md-5{
+    
+    margin-right:20px;
+}
+
+.fa-chevron-right, .fa-chevron-left{
+    
+    
+    text-decoration:none;
+    
+     
+}
+.col-md-1{
+    
+    
+    text-align: right;
+    margin: auto 0;
+}
+
+#information i{
+    
+    font-size: 30px;
+    font-weight:700;
+    
+}
+
 
