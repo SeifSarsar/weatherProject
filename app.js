@@ -62,15 +62,16 @@ weatherApp.controller('forecastController',['$scope','cityService','weatherQuery
     }
     
      
-    function giveTime(){
+    $scope.timeFunction=function (){
        $scope.displayInfo=true; $scope.timeOffsetObject=timeOffsetFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
     }
     
-    $scope.timeFunction=giveTime;
+   1529093442
     
-   function handleTimeOffsetSuccess(){
-        
-            
+   function handleTimeOffsetSuccess(data){
+      $scope.timeOfCity=$scope.weatherObject.dt+$scope.timeOffsetObject.rawOffset+$scope.timeOffsetObject.dstOffset;
+      $scope.tempInFaren=kelvinToFaren($scope.weatherObject.main.temp);
+     
    }
    function handleTimeOffsetError(){
        
@@ -81,7 +82,10 @@ weatherApp.controller('forecastController',['$scope','cityService','weatherQuery
         
         return Math.round(temperatureInKelvin-273.15);
     }
-  
+    function kelvinToFaren(temperatureInKelvin){
+        
+        return Math.round(temperatureInKelvin*(9/5)-459.67);
+    }
     
     function definirCouleur(temperatureCelcius){
         var card= document.getElementById('cardMeteo');

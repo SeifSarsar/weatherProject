@@ -39,7 +39,7 @@
                                                 <i class="wi wi-time-2"></i>
                                             </div>
                                             <div class="col-md-6">
-                                                <h5 >{{weatherObject.dt|date:'HH:mm:ss'}}</h5>
+                                                <h5 >{{timeOfCity|date:'hh:mm'}}</h5>
                                             </div>
                                         </div>
 
@@ -48,7 +48,7 @@
                                                 <i class="wi wi-thermometer"></i> 
                                             </div>
                                             <div class="col-md-6">
-                                                <h5 >{{weatherObject.wind.speed}} %</h5>
+                                                <h5 >{{(tempInFaren)}} &deg F </h5>
                                             </div>
                                         </div>
 
