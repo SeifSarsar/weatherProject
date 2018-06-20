@@ -56,6 +56,6 @@ a:hover{
     
     padding-left:0px;
 }
-#map{
+.col-md-7, #map{
     height:400px
 }

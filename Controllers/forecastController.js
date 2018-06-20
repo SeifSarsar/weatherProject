@@ -1,24 +1,26 @@
 angular.module('weatherApp').controller('forecastController',['$scope','cityService','weatherQueryService','timeQueryService',function($scope,cityService,weatherQueryService,timeQueryService){  
     $scope.city=cityService.city;
-    $scope.key="adb8501eb9a6f88ec2ea8ab9bd4754cb";
     $scope.displayInfo=false;
-    $scope.weatherObject={};
+    $scope.display=false;
+    $scope.displayMap=false;
     var weatherFactory=weatherQueryService.getInstance();
     var timeOffsetFactory=timeQueryService.getInstance();
     
     $scope.weatherObject=weatherFactory.fetchWeather({city:$scope.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
    
     console.log($scope.weatherObject);
-    
+   
     function handleWeatherSuccess(data){
         $scope.display=true;
         //checkDayTime();
+        var weatherObject=data;
+        
         $scope.tempInCelcius=kelvinToCelcius($scope.weatherObject.main.temp);
         definirCouleur($scope.tempInCelcius);
         
-        $scope.weatherDescription=$scope.weatherObject.weather[0].description;
+        $scope.weatherDescription=weatherObject.weather[0].description;
         
-        $scope.country=$scope.weatherObject.sys.country;      
+        $scope.country=weatherObject.sys.country;      
      
     }
     function handleWeatherError(){
@@ -29,7 +31,8 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
     
      
     $scope.timeFunction=function (){
-       $scope.displayInfo=true; $scope.timeOffsetObject=timeOffsetFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
+       $scope.displayInfo=true; 
+       $scope.timeOffsetObject=timeOffsetFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
     }
     
     
@@ -74,7 +77,13 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
             info.style.backgroundColor='#dc3545';
         }
     }
-    
-    
+       
+    $scope.createMap=function(){ 
+      $scope.displayMap=!$scope.displayMap;        
+      var location = {lat:$scope.weatherObject.coord.lat , lng:$scope.weatherObject.coord.lon};
+      $scope.map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 4, center: location});
+      $scope.marker = new google.maps.Marker({position: location, map: $scope.map});
+    }
     
 }]);
