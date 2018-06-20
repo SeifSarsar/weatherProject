@@ -1,5 +1,5 @@
-.card-body{
-    
+card-body{
+   
     display: flex;
     vertical-align: middle;
 }
@@ -25,9 +25,11 @@ a:hover{
    text-decoration: none;
 }
 
-.col-md-5{
+.col-md-5,#map{
     
-    margin-right:20px;
+     padding-left:0px;
+     background-clip: content-box;
+     
 }
 
 .fa-chevron-right, .fa-chevron-left{
@@ -47,8 +49,13 @@ a:hover{
 #information i{
     
     font-size: 30px;
-    font-weight:700;
-    
+    font-weight:700;  
 }
 
-
+.col-md-offset-3{
+    
+    padding-left:0px;
+}
+#map{
+    height:400px
+}

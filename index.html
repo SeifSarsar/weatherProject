@@ -19,12 +19,16 @@
         </style>
         
         <!-- load angular via CDN -->
+        
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.7.0/angular-resource.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"> </script>
         <script src="app.js"></script>
+        
         <script type="text/javascript" src="Services/weatherQueryService.js"></script>
         <script type="text/javascript" src="Services/timeQueryService.js"></script>
+        <script type="text/javascript" src="Controllers/forecastController.js"></script>
+        <script type="text/javascript" src="Controllers/homeController.js"></script>
         
         	
     </head>
@@ -48,6 +52,6 @@
             <div ui-view></div> <!--6-->
 
 		</div>
-
+            
     </body>
 </html>
