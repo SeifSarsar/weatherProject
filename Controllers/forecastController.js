@@ -3,14 +3,17 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
     $scope.displayInfo=false;
     $scope.display=false;
     $scope.displayMap=false;
+    $scope.displayLoading=true;
     var weatherFactory=weatherQueryService.getInstance();
     var timeOffsetFactory=timeQueryService.getInstance();
     
+   
     $scope.weatherObject=weatherFactory.fetchWeather({city:$scope.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
    
     console.log($scope.weatherObject);
    
     function handleWeatherSuccess(data){
+        $scope.displayLoading=false;
         $scope.display=true;
         //checkDayTime();
         var weatherObject=data;
@@ -24,9 +27,9 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
      
     }
     function handleWeatherError(){
-         console.log("Error");
-         $scope.display=false;
-         
+        $scope.displayLoading=false;
+        $scope.display=false;
+        console.log("Error");
     }
     
      

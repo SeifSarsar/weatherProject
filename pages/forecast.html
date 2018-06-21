@@ -1,7 +1,14 @@
 
+<div ng-if="displayLoading===true"> 
+   <i class="fa fa-circle-o-notch fa-spin" style="font-size:36px"></i>
+        
+    
+    
+</div>
+
 <div>
     
-    <div class="col-md-5 float-left text-white" id="cardMeteo" ng-show="display===true" >
+    <div class="col-md-5 float-left text-white" id="cardMeteo" ng-show="display===true && displayLoading===false" >
                 
 
           <div class="card-body">
@@ -24,27 +31,24 @@
                         
                         <weather-information class="col-md-12 text-white mt-2" id="information" ></weather-information>
                     </div>
-
                 </div>
           </div>
             
     </div>
   
         
-    </div>
+</div>
 
     <div class="col-md-7 float-right">
         <div id="map" class="col-md-12" ng-show="displayMap===true">
-
-
         </div>
     </div>
         
 
    
-<div class="alert alert-danger col-md-6" id="error" ng-show="display===false"> This City Doesn't Exist! </div>
+<div class="alert alert-danger col-md-6" id="error" ng-show="display===false && displayLoading==false"> This City Doesn't Exist! </div>
 
-<a ui-sref="home" id="buttonReturn" class="btn text-white bg-dark mt-1"><i class="fa fa-long-arrow-left" style="font-size:36px"></i></a>
+<a ui-sref="home" id="buttonReturn" class="btn text-white bg-dark mt-3"><i class="fa fa-long-arrow-left" style="font-size:36px"></i></a>
 
 
         
