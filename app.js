@@ -1,4 +1,4 @@
-var weatherApp = angular.module('weatherApp', ['ui.router', 'ngResource']); 
+var weatherApp = angular.module('weatherApp', ['ui.router', 'ngResource','ngAnimate']); 
 
 
 weatherApp.config(function($stateProvider){
@@ -13,6 +13,12 @@ weatherApp.config(function($stateProvider){
         url:'/forecast',
         templateUrl:'pages/forecast.html',
         controller:'forecastController'
+    })
+    .state('test',{
+        
+        url:'/test',
+        templateUrl:'pages/test.html',
+        controller:'testController'
     })
 });
 //serives

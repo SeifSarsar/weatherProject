@@ -1,52 +1,48 @@
-<div ng-show="displayInfo===true">
-                 
-        <div class="card-text">
-                <div class="row">
-                    <div class="col-md-6">
-                        <i class="wi wi-time-2"></i>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 >{{cityTime|date:'H:mm'}}</h5>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <i class="wi wi-thermometer"></i> 
-                    </div>
-                    <div class="col-md-6">
-                        <h5 >{{(tempInFaren)}} &deg F </h5>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <i class="wi wi-humidity"></i>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>{{weatherObject.main.humidity}} %</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <i class="wi wi-cloud"></i>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>{{weatherObject.clouds.all}} %</h5>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <i class="wi wi-strong-wind"></i>
-                    </div>  
-
-                    <div class="col-md-6">
-                        <h5>{{weatherObject.wind.speed}} m/s</h5>
-                    </div>
-                </div>
-
+<div class="card-text">
+    <div class="row">
+        <div class="col-md-6">
+            <i class="wi wi-time-2"></i>
         </div>
+        <div class="col-md-6">
+            <h5 >{{cityTime|date:'H:mm'}}</h5>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <i class="wi wi-thermometer"></i> 
+        </div>
+        <div class="col-md-6">
+            <h5 >{{(tempInFaren)}} &deg F </h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <i class="wi wi-humidity"></i>
+        </div>
+        <div class="col-md-6">
+            <h5>{{weatherObject.main.humidity}} %</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <i class="wi wi-cloud"></i>
+        </div>
+        <div class="col-md-6">
+            <h5>{{weatherObject.clouds.all}} %</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <i class="wi wi-strong-wind"></i>
+        </div>  
+
+        <div class="col-md-6">
+            <h5>{{weatherObject.wind.speed}} m/s</h5>
+        </div>
+    </div>
 
 </div>

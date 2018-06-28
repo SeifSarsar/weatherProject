@@ -1,11 +1,11 @@
-angular.module('weatherApp').controller('forecastController',['$scope','cityService','weatherQueryService','timeQueryService',function($scope,cityService,weatherQueryService,timeQueryService){  
+angular.module('weatherApp').controller('forecastController',['$scope','cityService','weatherQueryService','googleQueryService',function($scope,cityService,weatherQueryService,googleQueryService){  
     $scope.city=cityService.city;
     $scope.displayInfo=false;
     $scope.display=false;
     $scope.displayMap=false;
     $scope.displayLoading=true;
     var weatherFactory=weatherQueryService.getInstance();
-    var timeOffsetFactory=timeQueryService.getInstance();
+    var googleFactory=googleQueryService.getInstance();
     
    
     $scope.weatherObject=weatherFactory.fetchWeather({city:$scope.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
@@ -35,7 +35,7 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
      
     $scope.timeFunction=function (){
        $scope.displayInfo=true; 
-       $scope.timeOffsetObject=timeOffsetFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
+        $scope.timeOffsetObject=googleFactory.fetchTimeOffset({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon,timeStamp:$scope.weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
     }
     
     
@@ -87,6 +87,44 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
       $scope.map = new google.maps.Map(
           document.getElementById('map'), {zoom: 4, center: location});
       $scope.marker = new google.maps.Marker({position: location, map: $scope.map});
+        $scope.displayGallery();
     }
+    
+    $scope.displayGallery=function(){
+        
+        console.log($scope.weatherObject.coord.lat);
+        googleFactory.fetchPlace({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon},handlePlaceSuccess,handlePlaceError);
+           
+    }
+    
+    
+    function handlePlaceSuccess (data){
+        console.log(data);
+        $scope.places=data.results;
+        
+        var photosReference=getPhotosReference($scope.places);
+        console.log(photosReference);
+    }
+    
+    function getPhotosReference(places){
+        var photosReference=[];
+        
+        for (var i=0;i<places.length;i++){
+            
+            if (places[i].photos!=undefined){
+                
+                photosReference.push($scope.places[i].photos[0].photo_reference);
+            }
+        }
+        return photosReference;
+    }
+    
+    function handlePlaceError(){
+        
+        console.log("Problem fetching places");
+    }
+  
+    
+    
     
 }]);

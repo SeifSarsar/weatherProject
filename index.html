@@ -24,11 +24,15 @@
         <script src="https://code.angularjs.org/1.7.0/angular-resource.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"> </script>
         <script src="app.js"></script>
-        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular-animate.js"></script>
+
+
         <script type="text/javascript" src="Services/weatherQueryService.js"></script>
-        <script type="text/javascript" src="Services/timeQueryService.js"></script>
+        <script type="text/javascript" src="Services/googleQueryService.js"></script>
         <script type="text/javascript" src="Controllers/forecastController.js"></script>
         <script type="text/javascript" src="Controllers/homeController.js"></script>
+        <script type="text/javascript" src="Controllers/testController.js"></script>
+
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjbCSzuISz5eYJL7VilkMAnr51q-PxfTY&callback=initMap"></script>
         	
     </head>
@@ -38,7 +42,7 @@
 			<nav class="navbar navbar-dark bg-dark text-white">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" ui-sref="home">Weather Around the World</a>
+					<a class="navbar-brand" ui-sref="test">Weather Around the World</a>
 				</div>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -49,7 +53,7 @@
 		</header>
         <br>
         <div class="container">
-            <div ui-view></div> <!--6-->
+            <div ui-view class="jsView"></div> <!--6-->
 
 		</div>
             

@@ -1,4 +1,4 @@
-card-body{
+.card-body{
    
     display: flex;
     vertical-align: middle;
@@ -46,6 +46,7 @@ a:hover{
     margin: auto 0;
 }
 
+
 #information i{
     
     font-size: 30px;
@@ -58,4 +59,42 @@ a:hover{
 }
 .col-md-7, #map{
     height:400px
+}
+
+
+/*Animations*/
+
+.jsView.ng-enter{
+    transition: 0.3s linear all;
+    opacity:0;
+    
+}
+
+.jsView.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+weather-information {
+   transition: 0.5s linear all;
+   overflow: hidden;
+   height:200px;
+   
+
+}
+weather-information.ng-hide {
+   
+   height:0px;
+
+}
+
+
+#map{
+   transition: 0.5s linear all;    
+   overflow: hidden;    
+}
+
+#map.ng-hide{
+    
+    width:0px;
+    
 }

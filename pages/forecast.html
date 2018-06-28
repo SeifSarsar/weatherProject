@@ -29,7 +29,10 @@
                               <a ng-click="createMap()"><i class="fa fa-globe" style="font-size:24px"></i></a>
                           </div>
                         
-                        <weather-information class="col-md-12 text-white mt-2" id="information" ></weather-information>
+                        
+                    </div>
+                    <div class="row">
+                        <weather-information class="col-md-12 text-white mt-2" ng-show="displayInfo===true"  id="information" ></weather-information>
                     </div>
                 </div>
           </div>
