@@ -98,3 +98,18 @@ weather-information.ng-hide {
     width:0px;
     
 }
+
+#buttonReturn{
+    
+    float:left;
+}
+
+#buttonGallery{
+    float:right;
+    font-weight:600;
+    padding-top:12px;
+    padding-bottom:12px;
+    position:relative;
+    left:-15px;
+   
+}

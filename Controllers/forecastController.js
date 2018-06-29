@@ -4,6 +4,7 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
     $scope.display=false;
     $scope.displayMap=false;
     $scope.displayLoading=true;
+    $scope.displayGallery=false;
     var weatherFactory=weatherQueryService.getInstance();
     var googleFactory=googleQueryService.getInstance();
     
@@ -15,7 +16,6 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
     function handleWeatherSuccess(data){
         $scope.displayLoading=false;
         $scope.display=true;
-        //checkDayTime();
         var weatherObject=data;
         
         $scope.tempInCelcius=kelvinToCelcius($scope.weatherObject.main.temp);
@@ -24,7 +24,8 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
         $scope.weatherDescription=weatherObject.weather[0].description;
         
         $scope.country=weatherObject.sys.country;      
-     
+        /**********************************************************/
+        /**************************Create Flag Here****************/
     }
     function handleWeatherError(){
         $scope.displayLoading=false;
@@ -87,43 +88,8 @@ angular.module('weatherApp').controller('forecastController',['$scope','cityServ
       $scope.map = new google.maps.Map(
           document.getElementById('map'), {zoom: 4, center: location});
       $scope.marker = new google.maps.Marker({position: location, map: $scope.map});
-        $scope.displayGallery();
+       
     }
-    
-    $scope.displayGallery=function(){
-        
-        console.log($scope.weatherObject.coord.lat);
-        googleFactory.fetchPlace({lat:$scope.weatherObject.coord.lat,lon:$scope.weatherObject.coord.lon},handlePlaceSuccess,handlePlaceError);
-           
-    }
-    
-    
-    function handlePlaceSuccess (data){
-        console.log(data);
-        $scope.places=data.results;
-        
-        var photosReference=getPhotosReference($scope.places);
-        console.log(photosReference);
-    }
-    
-    function getPhotosReference(places){
-        var photosReference=[];
-        
-        for (var i=0;i<places.length;i++){
-            
-            if (places[i].photos!=undefined){
-                
-                photosReference.push($scope.places[i].photos[0].photo_reference);
-            }
-        }
-        return photosReference;
-    }
-    
-    function handlePlaceError(){
-        
-        console.log("Problem fetching places");
-    }
-  
     
     
     
