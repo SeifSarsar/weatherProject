@@ -1,0 +1,61 @@
+
+<div ng-if="weather.displayLoading===true"> 
+   <i class="fa fa-circle-o-notch fa-spin" style="font-size:36px"></i>
+        
+    
+    
+</div>
+
+<div>
+    
+    <div class="col-md-5 float-left text-dark" id="cardMeteo" ng-show="weather.display===true && weather.displayLoading===false" >
+                
+
+          <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                          <div class="col-md-6">
+                            <h4 class="card-title">{{weather.city}},{{weather.country}}</h4>
+                            <h4 class="card-text">{{weather.tempInCelcius}}&deg C</h4>
+                          </div>
+
+                           <weather-icons class="col-md-4 text-center mr-0 "></weather-icons>
+                        
+                          <div class="col-md-10">
+                              <a ng-show="weather.displayInfo===false" ng-click="weather.callExtraInformation()"><i id="downArror"class="fa fa-chevron-down"></i></a>
+                              <a ng-show="weather.displayInfo===true" ng-click="weather.displayInfo=false"><i class="fa fa-chevron-up"></i></a>
+                          </div>
+                          <div class="col-md-2">
+                              <a ng-click="weather.createMap()"><i class="fa fa-globe" style="font-size:24px"></i></a>
+                          </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <weather-information class="col-md-12 mt-2" id="information" ng-show="weather.displayInfo===true" ></weather-information>
+                    </div>
+                </div>
+          </div>
+            
+    </div>
+  
+        
+</div>
+
+    <div class="col-md-7 float-right">
+        <div id="map" class="col-md-12" ng-show="weather.displayMap===true">
+        </div>
+    </div>
+        
+
+   
+<div class="alert alert-danger col-md-6" id="error" ng-show="weather.display===false && weather.displayLoading==false"> This City Doesn't Exist! </div>
+
+
+<a  id="buttonReturn" class="btn text-dark bg-light mt-3" ui-sref="home"><i class="fa fa-long-arrow-left" style="font-size:36px"></i></a>
+
+
+
+
+
+

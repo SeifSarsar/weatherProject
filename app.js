@@ -3,26 +3,26 @@ var weatherApp = angular.module('weatherApp', ['ui.router', 'ngResource','ngAnim
 
 weatherApp.config(function($stateProvider){
     $stateProvider
-
     .state('home',{
         url:'/home',
         templateUrl:'pages/home.html',
-        controller:'homeController'
+        controller:'HomeCtrl'
     })
     .state('forecast',{
-        url:'/forecast',
-        templateUrl:'pages/forecast.html',
-        controller:'forecastController'
+        url:'/weather',
+        templateUrl:'pages/weather.html',
+        controller:'WeatherCtrl',
+        controllerAs: 'weather'
     })
     .state('test',{
         
         url:'/test',
         templateUrl:'pages/test.html',
-        controller:'testController'
+        controller:'testCtrl'
     })
 });
 //serives
-weatherApp.service('cityService',function(){
+weatherApp.service('CityService',function(){
     
     this.city="";
 })

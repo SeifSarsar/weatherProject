@@ -1,11 +1,11 @@
 (function() {
     'use strict';
-    angular.module('weatherApp').factory('weatherQueryService',weatherQueryService);
+    angular.module('weatherApp').factory('WeatherQueryService',WeatherQueryService);
 
-    weatherQueryService.$inject = ['$resource'];
+    WeatherQueryService.$inject = ['$resource'];
 
 
-    function weatherQueryService($resource){
+    function WeatherQueryService($resource){
 
         var factory={};
 

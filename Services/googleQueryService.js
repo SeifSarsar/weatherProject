@@ -1,11 +1,11 @@
 (function() {
     'use strict';
-    angular.module('weatherApp').factory('googleQueryService',googleQueryService);
+    angular.module('weatherApp').factory('GoogleQueryService',GoogleQueryService);
 
-    googleQueryService.$inject = ['$resource'];
+    GoogleQueryService.$inject = ['$resource'];
 
 
-    function googleQueryService($resource){
+    function GoogleQueryService($resource){
 
         var factory={};
 
