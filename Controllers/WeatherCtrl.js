@@ -20,14 +20,14 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService)
     
     /***************************************Weather Query**************************************************************/
    var weatherObject=weatherFactory.fetchWeather({city:vm.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
-
+    console.log(weatherObject);
     function handleWeatherSuccess(data){
         vm.displayLoading=false;
         vm.display=true;
         vm.tempInCelcius=kelvinToCelcius(data.main.temp);
         vm.weatherDescription=data.weather[0].description;
         vm.country=data.sys.country; 
-
+        createFlag(vm.country);
         definirCouleur(vm.tempInCelcius);        
     }
     function handleWeatherError(){
@@ -95,5 +95,7 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService)
     }
     /*************************************************************************/
     
-    
+    var createFlag=function(country){
+        document.getElementById("imageFlag").src="http://www.countryflags.io/"+country+"/shiny/32.png";    
+    }
 }
