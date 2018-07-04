@@ -12,6 +12,8 @@
         <link  rel="stylesheet" href="css/app.css">
         <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
         <style>
             html, body, input, select, textarea
             {
@@ -40,15 +42,15 @@
     <body>
         
         <header>
-			<nav class="navbar navbar-light bg-light justify-content-between">
+			<nav class="navbar navbar-light bg-light justify-content-between sticky-top position-fixed">
                 <a class="navbar-brand" ui-sref="home">Weather Worldwide</a>
-                <a class="nav-link mr-3 text-dark" ui-sref="home">Home</a>
+                <a class="nav-link mr-3 text-dark w3-xlarge" ui-sref="home"><i class="fa fa-home"></i></a>
                
             </nav>
 		</header>
         <br>
         <div class="container">
-            <div ui-view class="jsView"></div> <!--6-->
+            <div ui-view class="jsView mt-5"></div> <!--6-->
 
 		</div>
             

@@ -1,5 +1,4 @@
 .card-body{
-   
     display: flex;
     vertical-align: middle;
 }
@@ -10,14 +9,12 @@
 }
 
 h4:first-letter{
-    
     text-transform:capitalize;
 }
 
 .wi-day-cloudy{
     padding-bottom:0px;
     padding-top:10px;
-    
 }
 
 weather-icons{
@@ -29,36 +26,28 @@ a:hover{
    text-decoration: none;
 }
 
+
+
 .col-md-5,#map{
-    
      padding-left:0px;
      background-clip: content-box;
-     
 }
 
 .fa-chevron-right, .fa-chevron-left{
-    
-    
     text-decoration:none;
-    
-     
 }
 .col-md-1{
-    
-    
     text-align: right;
     margin: auto 0;
 }
 
 
 #information i{
-    
     font-size: 30px;
     font-weight:700;  
 }
 
 .col-md-offset-3{
-    
     padding-left:0px;
 }
 .col-md-7.col-sm-6, #map{
@@ -71,7 +60,6 @@ a:hover{
 .jsView.ng-enter{
     transition: 0.3s linear all;
     opacity:0;
-    
 }
 
 .jsView.ng-enter.ng-enter-active {
@@ -82,13 +70,9 @@ weather-information {
    transition: 0.5s linear all;
    overflow: hidden;
    height:195px;
-   
-
 }
 weather-information.ng-hide {
-   
    height:0px;
-
 }
 
 
@@ -98,14 +82,7 @@ weather-information.ng-hide {
 }
 
 #map.ng-hide{
-    
     width:0px;
-    
-}
-
-#buttonReturn{
-    
-    float:left;
 }
 
 #buttonGallery{
@@ -115,5 +92,12 @@ weather-information.ng-hide {
     padding-bottom:12px;
     position:relative;
     left:-15px;
-   
 }
+ 
+.navbar{
+    width:100%;
+    position:fixed;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
