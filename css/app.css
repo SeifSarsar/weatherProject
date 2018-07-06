@@ -26,8 +26,6 @@ a:hover{
    text-decoration: none;
 }
 
-
-
 .col-md-5,#map{
      padding-left:0px;
      background-clip: content-box;
@@ -50,10 +48,9 @@ a:hover{
 .col-md-offset-3{
     padding-left:0px;
 }
-.col-md-7.col-sm-6, #map{
+ #map{
     height:400px
 }
-
 
 /*Animations*/
 
@@ -66,12 +63,13 @@ a:hover{
     opacity:1;
 }
 
-weather-information {
+#information {
    transition: 0.5s linear all;
    overflow: hidden;
    height:195px;
+  
 }
-weather-information.ng-hide {
+#information.ng-hide {
    height:0px;
 }
 
@@ -85,14 +83,7 @@ weather-information.ng-hide {
     width:0px;
 }
 
-#buttonGallery{
-    float:right;
-    font-weight:600;
-    padding-top:12px;
-    padding-bottom:12px;
-    position:relative;
-    left:-15px;
-}
+
  
 .navbar{
     width:100%;
