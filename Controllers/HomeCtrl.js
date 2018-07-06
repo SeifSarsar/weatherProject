@@ -10,4 +10,5 @@ function HomeCtrl($scope,CityService){
         CityService.city=$scope.city;
     });
     
+    
 }

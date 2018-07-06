@@ -4,9 +4,7 @@ WeatherCtrl.$inject= ['$scope','CityService','WeatherQueryService','GoogleQueryS
                                                         
                                                         
 function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService){  
-    var vm = this;
-    
-    vm.city=CityService.city;
+    var vm = this; 
     vm.displayInfo=false;
     vm.display=false;
     vm.displayMap=false;
@@ -14,9 +12,29 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService)
     vm.displayGallery=false;
     var weatherFactory=WeatherQueryService.getInstance();
     var googleFactory=GoogleQueryService.getInstance();
+    var adjustedCityName;
+   
     
-   
-   
+    /*********************************Adjust City Name ********************************/
+    adjustLetters();
+    function adjustLetters(){
+        var letter;
+        adjustedCityName=CityService.city[0].toUpperCase();
+        for (var i=1;i<CityService.city.length;i++){
+            
+            if (CityService.city[i-1]=="-" || CityService.city[i-1]==" "){
+                letter=CityService.city[i].toUpperCase();
+            }
+            else {
+               letter=CityService.city[i].toLowerCase(); 
+            }
+            adjustedCityName+=letter;
+        }
+        
+        console.log(adjustedCityName);
+        vm.city=adjustedCityName;
+    }
+    /*********************************************************************************/
     
     /***************************************Weather Query**************************************************************/
    var weatherObject=weatherFactory.fetchWeather({city:vm.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON

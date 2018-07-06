@@ -1,17 +1,21 @@
+.navbar{
+    width:100%;
+    position:fixed;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
 .card-body{
     display: flex;
     vertical-align: middle;
 }
 
+
+
 .wi{
     font-size:4em;
     padding-bottom:10px;
 }
-
-h4:first-letter{
-    text-transform:capitalize;
-}
-
 .wi-day-cloudy{
     padding-bottom:0px;
     padding-top:10px;
@@ -20,6 +24,8 @@ h4:first-letter{
 weather-icons{
     font-size:15px;
 }
+
+
 
 a:hover{
    cursor:pointer; 
@@ -42,7 +48,6 @@ a:hover{
 
 #information i{
     font-size: 30px;
-    font-weight:700;  
 }
 
 .col-md-offset-3{
@@ -83,12 +88,4 @@ a:hover{
     width:0px;
 }
 
-
- 
-.navbar{
-    width:100%;
-    position:fixed;
-    padding-top:0px;
-    padding-bottom:0px;
-}
 

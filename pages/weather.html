@@ -10,12 +10,12 @@
       <div class="card-body " id="cardMeteo"  ng-show="weather.display===true && weather.displayLoading===false" >
             <div class="container">
                 <div class="row">
-                      <div class="col-md-7 col-sm-7">
+                      <div class="col-md-7 col-sm-8">
                         <h4 class="card-title mb-0">{{weather.city}} <img id="imageFlag"></h4>
                         <h4 class="card-text">{{weather.tempInCelcius}}&deg C</h4>
                       </div>
 
-                       <weather-icons class="col-md-5 col-sm-5 text-left mr-0 "></weather-icons>
+                       <weather-icons class="col-md-5 col-sm-4 text-left mr-0 "></weather-icons>
 
                       <div class="col-md-10 col-sm-10">
                           <a ng-show="weather.displayInfo===false" ng-click="weather.callExtraInformation()"><i id="downArror"class="fa fa-chevron-down"></i></a>
