@@ -6,12 +6,13 @@ weatherApp.config(function($stateProvider){
     .state('welcome',{
         url:'',
         templateUrl:'pages/welcome.html',
-        controller:'HomeCtrl'
+        controller:'WelcomeCtrl'
     })
      .state('home',{
         url:'/',
         templateUrl:'pages/home.html',
-        controller:'HomeCtrl'
+        controller:'HomeCtrl',
+        controllerAs: 'home'
     })
     .state('forecast',{
         url:'/weather',

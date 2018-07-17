@@ -1,45 +1,38 @@
 .navbar{
-    width:100%;
-    position:fixed;
-    padding-top:0px;
-    padding-bottom:0px;
+    width: 100%;
+    position: fixed;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
-
-.card-body{
-    display: flex;
-    vertical-align: middle;
-}
-
-
 
 .wi{
-    font-size:4em;
-    padding-bottom:10px;
+    font-size: 4em;
+    padding-bottom: 10px;
 }
+
 .wi-day-cloudy{
-    padding-bottom:0px;
-    padding-top:10px;
+    padding-bottom: 0px;
+    padding-top: 10px;
 }
 
 weather-icons{
-    font-size:15px;
+    font-size: 15px;
 }
 
-
-
 a:hover{
-   cursor:pointer; 
+   cursor: pointer; 
    text-decoration: none;
 }
 
 .col-md-5,#map{
-     padding-left:0px;
+     padding-left: 0px;
      background-clip: content-box;
 }
 
 .fa-chevron-right, .fa-chevron-left{
-    text-decoration:none;
+    text-decoration: none;
 }
+
 .col-md-1{
     text-align: right;
     margin: auto 0;
@@ -51,17 +44,18 @@ a:hover{
 }
 
 .col-md-offset-3{
-    padding-left:0px;
+    padding-left: 0px;
 }
+
  #map{
-    height:400px
+    height: 400px
 }
 
 /*Animations*/
 
 .jsView.ng-enter{
     transition: 0.3s linear all;
-    opacity:0;
+    opacity: 0;
 }
 
 .jsView.ng-enter.ng-enter-active {
@@ -71,13 +65,13 @@ a:hover{
 #information {
    transition: 0.5s linear all;
    overflow: hidden;
-   height:195px;
+   height: 195px;
   
 }
+
 #information.ng-hide {
    height:0px;
 }
-
 
 #map{
    transition: 0.5s linear all;    
@@ -85,13 +79,28 @@ a:hover{
 }
 
 #map.ng-hide{
-    width:0px;
+    width: 0px;
 }
 
 #welcome{
-    text-align:center;
+    margin: 0px;
+    text-align: center;
+    width:50%;
+    margin:0px auto;
+    border-radius: 15px;
+    transition-duration:0.5s;
 }
 
+.disabledButton{
+    background-color: #bebebe;
+    pointer-events: none;
+}
 
+#welcome .icons{
+    border-radius:15px 15px 0px 0px;
+}
 
+#welcome .card-body{
+    border-radius:0px 0px 15px 15px;
+}
 

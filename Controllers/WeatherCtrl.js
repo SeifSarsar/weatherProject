@@ -1,10 +1,12 @@
 angular.module('weatherApp').controller('WeatherCtrl',WeatherCtrl);
                                                         
-WeatherCtrl.$inject= ['$scope','CityService','WeatherQueryService','GoogleQueryService'];                                            
+WeatherCtrl.$inject= ['$scope','CityService','WeatherQueryService','GoogleQueryService','$location'];                                            
                                                         
                                                         
-function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService){  
-    var vm = this; 
+function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,$location){ 
+
+   
+    var vm = this;
     vm.displayInfo=false;
     vm.display=false;
     vm.displayMap=false;
@@ -14,12 +16,9 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService)
     var googleFactory=GoogleQueryService.getInstance();
     var adjustedCityName;
    
-    if (CityService.city===undefined){
-        console.log("fak");
-        CityService.city="Montreal";
-    }
-    else {
-         console.log(CityService.city);
+    /*When reload page... */
+    if (CityService.city===""){
+       $location.path('/'); 
     }
     /*********************************Adjust City Name ********************************/
     adjustLetters();
