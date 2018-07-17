@@ -14,7 +14,13 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService)
     var googleFactory=GoogleQueryService.getInstance();
     var adjustedCityName;
    
-    
+    if (CityService.city===undefined){
+        console.log("fak");
+        CityService.city="Montreal";
+    }
+    else {
+         console.log(CityService.city);
+    }
     /*********************************Adjust City Name ********************************/
     adjustLetters();
     function adjustLetters(){

@@ -3,8 +3,13 @@ var weatherApp = angular.module('weatherApp', ['ui.router', 'ngResource','ngAnim
 
 weatherApp.config(function($stateProvider){
     $stateProvider
-    .state('home',{
-        url:'/home',
+    .state('welcome',{
+        url:'',
+        templateUrl:'pages/welcome.html',
+        controller:'HomeCtrl'
+    })
+     .state('home',{
+        url:'/',
         templateUrl:'pages/home.html',
         controller:'HomeCtrl'
     })
