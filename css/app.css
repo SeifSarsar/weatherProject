@@ -48,7 +48,7 @@ a:hover{
 }
 
  #map{
-    height: 400px
+    height: 398px
 }
 
 /*Animations*/
@@ -80,6 +80,7 @@ a:hover{
 
 #map.ng-hide{
     width: 0px;
+    height:0px;
 }
 
 #welcome{

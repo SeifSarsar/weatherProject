@@ -91,22 +91,18 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     
     
     function definirCouleur(temperatureCelcius){
-        var card = document.getElementById('cardMeteo');
-        var info = document.getElementById('information');
+        var elementArray = document.getElementsByClassName('changingColor');
         
-        if (temperatureCelcius<20){
-            card.style.backgroundColor='#cce5ff';
-            info.style.backgroundColor='#cce5ff';
-            
-        }
-        else if (temperatureCelcius>=20 && temperatureCelcius<30){
-            card.style.backgroundColor='#fff3cd';
-            info.style.backgroundColor='#fff3cd';
-        }
-        else {
-            card.style.backgroundColor='#f8d7da';
-            info.style.backgroundColor='#f8d7da';
-        }
+        for (var element in elementArray)
+            if (temperatureCelcius<20){
+                elementArray[element].style.backgroundColor='#cce5ff';
+            }
+            else if (temperatureCelcius>=20 && temperatureCelcius<30){
+                elementArray[element].style.backgroundColor='#fff3cd'; 
+            }
+            else {
+                elementArray[element].style.backgroundColor='#f8d7da';
+            }
     }
      /**********************Create google map Api ****************************/  
     vm.createMap=function(){ 

@@ -15,14 +15,14 @@ function WelcomeCtrl ($scope,$interval){
     var i=1;
     var slide=$interval(slideShow,3500);
     function slideShow(){
-        icons[i-1].style.display="none";
-        icons[i].style.display="block";
         if (i !== 0){
             icons[i-1].style.display="none";
         }
         else {
              icons[icons.length-1].style.display="none";
         } 
+        icons[i].style.display="block";
+        
         
         i++;
         if (i===icons.length){
