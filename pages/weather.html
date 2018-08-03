@@ -15,7 +15,7 @@
                                 <h4 class="card-text">{{weather.tempInCelcius}}&deg C</h4>
                               </div>
 
-                               <weather-icons class="col-md-5 col-sm-4 text-left mr-0"></weather-icons>
+                               <current-weather-icons class="col-md-5 col-sm-4 text-left mr-0"></current-weather-icons>
 
                               <div class="col-md-10 col-sm-10">
                                   <a ng-show="weather.displayInfo===false" ng-click="weather.callExtraInformation()"><i id="downArror"class="fa fa-chevron-down"></i></a>
@@ -45,15 +45,37 @@
     </div>
 </div>
 
-<div class="container col-md-12 mt-4 changingColor" >
+<div class="container col-md-12 mt-4" >
 
-    <div class="row">Title</div>
-    <div class="row"> 
-        <div class="col-md-2"> <!--1 day -->
+    <div class="row text-center"><!--5 DAYS FORECAST SAME HOUR -->                 
         
-            <div class="row"></div> <!--Icon -->
-            <div class="row"></div>  <!--Temp -->
-        
+        <div class="col-md-3"  ng-repeat="weatherADay in weather.weatherForecastEveryDay"> <!--1 day -->
+            <div class="col-md-12" id="separated">
+                <div class="row "> 
+                    <div class="col-md-12 bg-light text-center">
+                        <div class="row h4 mb-0">
+                            <div class="col-md-12  pt-2">                   {{weatherADay.time*1000 | date:'EEE ' }}
+                            </div>
+                        </div>
+                        <div class="row h5">
+                            <div class="col-md-12">
+                                {{weatherADay.time*1000 | date:'dd/M ' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="row">  
+                            <div class="col-md-12 pt-2  changingColor">
+                            <forecast-weather-icons></forecast-weather-icons> <!--Icon -->
+                            </div>
+                        </div>
+
+                        <div class="row"><div class="col-md-12  h5  changingColor">{{weatherADay.temperature}}</div></div>  <!--Temp -->
+                    </div>
+                </div>
+            </div>
         </div>  <!--For each forecast -->
     
     </div>

@@ -42,10 +42,17 @@ weatherApp.directive('weatherInformation',function(){
 });
 
 
-weatherApp.directive('weatherIcons',function(){
+weatherApp.directive('currentWeatherIcons',function(){
     
     return {
-        templateUrl:'Directives/weatherIcons.html'
+        templateUrl:'Directives/currentWeatherIcons.html'
+    } 
+});
+
+weatherApp.directive('forecastWeatherIcons',function(){
+    
+    return {
+        templateUrl:'Directives/forecastWeatherIcons.html'
     } 
 });
 

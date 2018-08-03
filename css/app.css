@@ -6,19 +6,23 @@
 }
 
 .wi{
-    font-size: 4em;
-    padding-bottom: 10px;
+    font-size: 4.5em;
+    padding:5px
 }
 
-.wi-day-cloudy{
-    padding-bottom: 0px;
-    padding-top: 10px;
-}
 
-weather-icons{
+current-weather-icons{
     font-size: 15px;
 }
 
+forecast-weather-icons{
+    font-size: 10px; 
+}
+span{
+    
+    position:relative;
+    top:25px
+}
 a:hover{
    cursor: pointer; 
    text-decoration: none;
@@ -83,6 +87,11 @@ a:hover{
     height:0px;
 }
 
+forecast-weather-icons{
+    
+  
+}
+
 #welcome{
     margin: 0px;
     text-align: center;
@@ -103,5 +112,10 @@ a:hover{
 
 #welcome .card-body{
     border-radius:0px 0px 15px 15px;
+}
+
+#separated{
+    
+    background-clip: padding-box;
 }
 

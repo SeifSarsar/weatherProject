@@ -15,7 +15,8 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     var weatherFactory=WeatherQueryService.getInstance();
     var googleFactory=GoogleQueryService.getInstance();
     var adjustedCityName;
-   
+    var rawTimeOffset=0;
+    var dstTimeOffset=0;
     /*When reload page... */
     if (CityService.city===""){
        $location.path('/'); 
@@ -42,9 +43,9 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     /*********************************************************************************/
     
     /***************************************Weather Query**************************************************************/
-   var weatherObject=weatherFactory.fetchWeather({city:vm.city},handleWeatherSuccess,handleWeatherError); //Query Data from JSON
-    console.log(weatherObject);
-    function handleWeatherSuccess(data){
+   var CurrentWeather=weatherFactory.fetchCurrentWeather({city:vm.city},handleCurrentWeatherSuccess,handleCurrentWeatherError); //Query Data from JSON
+    console.log(CurrentWeather);
+    function handleCurrentWeatherSuccess(data){
         vm.displayLoading=false;
         vm.display=true;
         vm.tempInCelcius=kelvinToCelcius(data.main.temp);
@@ -53,7 +54,7 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
         createFlag(vm.country);
         definirCouleur(vm.tempInCelcius);        
     }
-    function handleWeatherError(){
+    function handleCurrentWeatherError(){
         vm.displayLoading=false;
         vm.display=false;
         console.log("Error Weather Query");
@@ -63,18 +64,20 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     
     /***************************************Time offset Query**************************************************************/
     vm.callExtraInformation=function (){
-        vm.displayInfo=true; googleFactory.fetchTimeOffset({lat:weatherObject.coord.lat,lon:weatherObject.coord.lon,timeStamp:weatherObject.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
+        vm.displayInfo=true; googleFactory.fetchTimeOffset({lat:CurrentWeather.coord.lat,lon:CurrentWeather.coord.lon,timeStamp:CurrentWeather.dt},handleTimeOffsetSuccess,handleTimeOffsetError);
     }
     
     
    function handleTimeOffsetSuccess(data){
         var localTime=new Date();
         var offsetUtcMin=localTime.getTimezoneOffset();
-        vm.cityTime=localTime.setSeconds(localTime.getSeconds()+(60*offsetUtcMin)+data.rawOffset+data.dstOffset); 
-        vm.tempInFaren=kelvinToFaren(weatherObject.main.temp);
-        vm.humidity=weatherObject.main.humidity;
-        vm.clouds=weatherObject.clouds.all;
-        vm.wind=weatherObject.wind.speed;
+        rawTimeOffset=data.rawOffset;
+        dstTimeOffset=data.dstOffset;
+        vm.cityTime=localTime.setSeconds(localTime.getSeconds()+(60*offsetUtcMin)+rawTimeOffset+dstTimeOffset); 
+        vm.tempInFaren=kelvinToFaren(CurrentWeather.main.temp);
+        vm.humidity=CurrentWeather.main.humidity;
+        vm.clouds=CurrentWeather.clouds.all;
+        vm.wind=CurrentWeather.wind.speed;
    }
     
    function handleTimeOffsetError(){
@@ -93,21 +96,22 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     function definirCouleur(temperatureCelcius){
         var elementArray = document.getElementsByClassName('changingColor');
         
-        for (var element in elementArray)
+        for (var i=0;i<elementArray.length;i++){
             if (temperatureCelcius<20){
-                elementArray[element].style.backgroundColor='#cce5ff';
+                elementArray[i].style.backgroundColor='#cce5ff';
             }
             else if (temperatureCelcius>=20 && temperatureCelcius<30){
-                elementArray[element].style.backgroundColor='#fff3cd'; 
+                elementArray[i].style.backgroundColor='#fff3cd'; 
             }
             else {
-                elementArray[element].style.backgroundColor='#f8d7da';
+                elementArray[i].style.backgroundColor='#f8d7da';
             }
+        }
     }
      /**********************Create google map Api ****************************/  
     vm.createMap=function(){ 
         vm.displayMap=!vm.displayMap;        
-        var location = {lat:weatherObject.coord.lat , lng:weatherObject.coord.lon};
+        var location = {lat:CurrentWeather.coord.lat , lng:CurrentWeather.coord.lon};
         vm.map = new google.maps.Map(
           document.getElementById('map'), {zoom: 4, center: location});
         vm.marker = new google.maps.Marker({position: location, map: vm.map});   
@@ -117,4 +121,23 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     var createFlag=function(country){
         document.getElementById("imageFlag").src="http://www.countryflags.io/"+country+"/shiny/32.png";    
     }
+    
+    
+   weatherFactory.fetch5DaysWeather({city:vm.city},handle5DaysWeatherSuccess,handle5DaysWeatherError); //Query Data from JSON
+    
+    function handle5DaysWeatherSuccess(data){
+        vm.weatherForecastEveryDay=[];
+        for (var i=0;i<data.cnt;i++){
+            if (data.list[i].dt_txt.search("15:00:00")!=-1){
+                vm.weatherForecastEveryDay.push({temperature:kelvinToCelcius(data.list[i].main.temp),description: data.list[i].weather[0].description,time:data.list[i].dt});
+            }
+        }
+        console.log( vm.weatherForecastEveryDay);
+    }
+    
+     function handle5DaysWeatherError(){
+        
+        console.log("Error Fetching 5 Days Forecast");
+    }
+
 }

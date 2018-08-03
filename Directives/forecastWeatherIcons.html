@@ -1,0 +1,11 @@
+<div >
+    <i class="wi wi-day-sunny" ng-if="weatherADay.description==='clear sky'"></i>
+    <i class="wi wi-day-cloudy" ng-if="weatherADay.description==='few clouds'||weatherADay.description==='scattered clouds'"></i>
+    <i class="wi wi-cloudy" ng-if="weatherADay.description==='broken clouds'|| weatherADay.description==='overcast clouds' || weatherADay.description=== 'drizzle'"></i>
+    <i class="wi wi-showers" ng-if="weatherADay.description==='shower rain' || weatherADay.description==='shower rain'||weatherADay.description==='light rain'||weatherADay.description==='light intensity drizzle' || weatherADay.description==='light intensity shower rain'"></i>
+    <i class="wi wi-rain" ng-if="weatherADay.description==='rain'|| weatherADay.description==='moderate rain'||weatherADay.description==='heavy intensity rain'"></i>
+    <i class="wi wi-storm-showers" ng-if="weatherADay.description==='thunderstorm' ||weatherADay.description==='thunderstorm with light rain' "></i>
+    <i class="wi wi-snow" ng-if="weatherADay.description==='snow'"></i>
+    <i class="wi wi-smog" ng-if="weatherADay.description==='mist'"></i>
+    <i class="wi wi-day-haze" ng-if="weatherADay.description==='haze'"></i>
+</div>
