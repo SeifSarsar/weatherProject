@@ -7,7 +7,7 @@
     <div class="row">
         <div class="container col-md-5 col-sm-6 float-left text-dark" >
 
-              <div class="card-body changingColor" ng-show="weather.display===true && weather.displayLoading===false" >
+              <div class="card-body" ng-class="{'hot':weather.tempInCelcius>=30 , 'warm':weather.tempInCelcius<30 && weather.tempInCelcius>=20 , 'cold': weather.tempInCelcius<20}" ng-show="weather.display===true && weather.displayLoading===false" >
                     <div class="container">
                         <div class="row">
                               <div class="col-md-7 col-sm-8">
@@ -49,30 +49,31 @@
 
     <div class="row text-center"><!--5 DAYS FORECAST SAME HOUR -->                 
         
-        <div class="col-md-3"  ng-repeat="weatherADay in weather.weatherForecastEveryDay"> <!--1 day -->
-            <div class="col-md-12" id="separated">
+        <div ng-class="{'col-md-2': weather.weatherForecastEveryDay.length==5 , 'col-md-3': weather.weatherForecastEveryDay.length==4}"  ng-repeat="weatherADay in weather.weatherForecastEveryDay"> <!--1 day -->
+            <div class="col-md-12 " id="separated">
                 <div class="row "> 
                     <div class="col-md-12 bg-light text-center">
                         <div class="row h4 mb-0">
-                            <div class="col-md-12  pt-2">                   {{weatherADay.time*1000 | date:'EEE ' }}
+                            <div class="col-md-12  pt-2">
+                                {{weatherADay.time*1000 | date:'EEE' }}
                             </div>
                         </div>
                         <div class="row h5">
                             <div class="col-md-12">
-                                {{weatherADay.time*1000 | date:'dd/M ' }}
+                                {{weatherADay.time*1000 | date:'dd/M' }}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center" ng-class="{'hot':weatherADay.temperature>=30 , 'warm':weatherADay.temperature<30 && weatherADay.temperature>=20 , 'cold': weatherADay.temperature<20}">
                         <div class="row">  
-                            <div class="col-md-12 pt-2  changingColor">
-                            <forecast-weather-icons></forecast-weather-icons> <!--Icon -->
+                            <div class="col-md-12 pt-2  ">
+                            <current-weather-icons></current-weather-icons> <!--Icon -->
                             </div>
                         </div>
 
-                        <div class="row"><div class="col-md-12  h5  changingColor">{{weatherADay.temperature}}</div></div>  <!--Temp -->
+                        <div class="row"><div class="col-md-12  h5">{{weatherADay.temperature}}</div></div>  <!--Temp -->
                     </div>
                 </div>
             </div>

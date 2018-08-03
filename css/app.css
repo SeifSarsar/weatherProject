@@ -87,10 +87,6 @@ a:hover{
     height:0px;
 }
 
-forecast-weather-icons{
-    
-  
-}
 
 #welcome{
     margin: 0px;
@@ -119,3 +115,15 @@ forecast-weather-icons{
     background-clip: padding-box;
 }
 
+.hot{
+   background-color: #f8d7da;
+}
+
+.warm{
+   background-color: #fff3cd;
+}
+
+.cold{
+    
+    background-color: #cce5ff;
+}

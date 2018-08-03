@@ -52,7 +52,7 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
         vm.weatherDescription=data.weather[0].description;
         vm.country=data.sys.country; 
         createFlag(vm.country);
-        definirCouleur(vm.tempInCelcius);        
+        //definirCouleur(vm.tempInCelcius);        
     }
     function handleCurrentWeatherError(){
         vm.displayLoading=false;
@@ -93,21 +93,6 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     }
     
     
-    function definirCouleur(temperatureCelcius){
-        var elementArray = document.getElementsByClassName('changingColor');
-        
-        for (var i=0;i<elementArray.length;i++){
-            if (temperatureCelcius<20){
-                elementArray[i].style.backgroundColor='#cce5ff';
-            }
-            else if (temperatureCelcius>=20 && temperatureCelcius<30){
-                elementArray[i].style.backgroundColor='#fff3cd'; 
-            }
-            else {
-                elementArray[i].style.backgroundColor='#f8d7da';
-            }
-        }
-    }
      /**********************Create google map Api ****************************/  
     vm.createMap=function(){ 
         vm.displayMap=!vm.displayMap;        
@@ -127,10 +112,12 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
     
     function handle5DaysWeatherSuccess(data){
         vm.weatherForecastEveryDay=[];
+        var dateUtc=data.list[0].dt;
         for (var i=0;i<data.cnt;i++){
-            if (data.list[i].dt_txt.search("15:00:00")!=-1){
+            if (data.list[i].dt==dateUtc){
                 vm.weatherForecastEveryDay.push({temperature:kelvinToCelcius(data.list[i].main.temp),description: data.list[i].weather[0].description,time:data.list[i].dt});
-            }
+                dateUtc+=86400;
+            } 
         }
         console.log( vm.weatherForecastEveryDay);
     }

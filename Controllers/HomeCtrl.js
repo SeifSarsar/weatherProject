@@ -8,7 +8,6 @@ function HomeCtrl($scope,CityService,$interval){
     vm.city=CityService.city;
     $scope.$watch('home.city',function(){  //si city dans le scope change, executer la fonction
         CityService.city=vm.city;
-        console.log(vm.city);
     });
     
     
