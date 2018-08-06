@@ -110,8 +110,16 @@ a:hover{
     border-radius:0px 0px 15px 15px;
 }
 
-#separated{
+.dark-blue{
+    color: #1a028e;
+}
+
+.dark-red{
     
+    color:#8e0101;
+}
+#separated{
+    padding:5px;
     background-clip: padding-box;
 }
 

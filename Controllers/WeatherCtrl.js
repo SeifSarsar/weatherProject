@@ -107,24 +107,74 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
         document.getElementById("imageFlag").src="http://www.countryflags.io/"+country+"/shiny/32.png";    
     }
     
+    /**********************Forecast next 5 days weather****************************/  
+    weatherFactory.fetch5DaysWeather({city:vm.city},handle5DaysWeatherSuccess,handle5DaysWeatherError); //Query Data from JSON
     
-   weatherFactory.fetch5DaysWeather({city:vm.city},handle5DaysWeatherSuccess,handle5DaysWeatherError); //Query Data from JSON
+    
+    function findMostRepeatedElementOfArray(array){
+        var counter = 0;
+        var maxCounter = 0;
+        var mostRepeatedWeather = null;
+        array.sort();
+        for (var i = 0; i< array.length ; i++){
+                var z=i;
+                while (array[i]===array[z]){
+                    counter++;
+                    z++;
+                }
+                if (counter>maxCounter){
+                    maxCounter=counter;
+                    mostRepeatedWeather=array[i];
+                }
+                counter=0;
+        }
+        return mostRepeatedWeather
+    }
+    
+    function calculateDailyMeanTemperature(array){
+        var sum=0;
+        for (var i=0; i<array.length;i++){
+            sum+=array[i];
+        }
+        return kelvinToCelcius(sum/array.length);
+        
+    }
+    
     
     function handle5DaysWeatherSuccess(data){
-        vm.weatherForecastEveryDay=[];
-        var dateUtc=data.list[0].dt;
-        for (var i=0;i<data.cnt;i++){
-            if (data.list[i].dt==dateUtc){
-                vm.weatherForecastEveryDay.push({temperature:kelvinToCelcius(data.list[i].main.temp),description: data.list[i].weather[0].description,time:data.list[i].dt});
-                dateUtc+=86400;
-            } 
-        }
-        console.log( vm.weatherForecastEveryDay);
+        
+            //find most repeated weather
+            vm.weatherForecastEveryDay=[];
+            var dailyWeatherEvery3h=[];
+            var dailyMinTemp=[];
+            var dailyMaxTemp=[];
+            var currentDate=null;
+        
+            var dailyTemperatureEvery3h=[];
+            for (var i=0;i<data.cnt-1;i++){
+                currentDate=data.list[i].dt_txt.slice(0,10);
+                while (currentDate === data.list[i].dt_txt.slice(0,10) && i< data.cnt-1){
+                    dailyWeatherEvery3h.push(data.list[i].weather[0].description);
+                    dailyTemperatureEvery3h.push(data.list[i].main.temp);
+                    dailyMinTemp.push(data.list[i].main.temp_min);
+                    
+                    dailyMaxTemp.push(data.list[i].main.temp_max);
+                    i++;
+                }
+                dailyMinTemp.sort();
+                dailyMaxTemp.sort();
+                vm.weatherForecastEveryDay.push({maxTemperature:kelvinToCelcius(dailyMaxTemp[dailyMaxTemp.length-1]), minTemperature:kelvinToCelcius(dailyMinTemp[0]),meanTemperature: calculateDailyMeanTemperature(dailyTemperatureEvery3h) , description: findMostRepeatedElementOfArray(dailyWeatherEvery3h) ,time:data.list[i].dt});
+                
+                dailyMinTemp=[];
+                dailyMaxTemp=[];
+                dailyWeatherEvery3h=[];
+                dailyTemperatureEvery3h=[];
+            }
     }
     
      function handle5DaysWeatherError(){
         
         console.log("Error Fetching 5 Days Forecast");
     }
-
+    /*************************************************************************/
 }

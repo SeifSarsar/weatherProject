@@ -49,7 +49,7 @@
 
     <div class="row text-center"><!--5 DAYS FORECAST SAME HOUR -->                 
         
-        <div ng-class="{'col-md-2': weather.weatherForecastEveryDay.length==5 , 'col-md-3': weather.weatherForecastEveryDay.length==4}"  ng-repeat="weatherADay in weather.weatherForecastEveryDay"> <!--1 day -->
+        <div class="col-md-2"  ng-repeat="weatherADay in weather.weatherForecastEveryDay"> <!--1 day -->
             <div class="col-md-12 " id="separated">
                 <div class="row "> 
                     <div class="col-md-12 bg-light text-center">
@@ -66,14 +66,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-center" ng-class="{'hot':weatherADay.temperature>=30 , 'warm':weatherADay.temperature<30 && weatherADay.temperature>=20 , 'cold': weatherADay.temperature<20}">
+                    <div class="col-md-12 text-center" ng-class="{'hot':weatherADay.meanTemperature>=30 , 'warm':weatherADay.meanTemperature<30 && weatherADay.meanTemperature>=20 , 'cold': weatherADay.meanTemperature<20}">
                         <div class="row">  
                             <div class="col-md-12 pt-2  ">
-                            <current-weather-icons></current-weather-icons> <!--Icon -->
+                            <forecast-weather-icons></forecast-weather-icons> <!--Icon -->
                             </div>
                         </div>
 
-                        <div class="row"><div class="col-md-12  h5">{{weatherADay.temperature}}</div></div>  <!--Temp -->
+                        <div class="row font-weight-bold">
+                                <div class="col-md-6 text-right dark-red">{{weatherADay.maxTemperature}}</div>
+                                <div class="col-md-6 text-left dark-blue">{{weatherADay.minTemperature}}</div>
+                        </div>  <!--Temp -->
                     </div>
                 </div>
             </div>
