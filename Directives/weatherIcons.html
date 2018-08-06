@@ -1,0 +1,14 @@
+<div >
+    <i class="wi wi-day-sunny" ng-if="weatherDescription==='clear sky'"></i>
+    <i class="wi wi-day-cloudy mt-2" ng-if="weatherDescription==='few clouds'||weatherDescription==='scattered clouds'"></i>
+    <i class="wi wi-cloudy" ng-if="weatherDescription==='broken clouds'|| weatherDescription==='overcast clouds' || weatherDescription=== 'drizzle'"></i>
+    <i class="wi wi-showers" ng-if="weatherDescription==='shower rain' || weatherDescription==='shower rain'||weatherDescription==='light rain'||weatherDescription==='light intensity drizzle' || weatherDescription==='light intensity shower rain'"></i>
+    <i class="wi wi-rain" ng-if="weatherDescription==='rain'|| weatherDescription==='moderate rain'"></i>
+    <i class="wi wi-storm-showers" ng-if="weatherDescription==='thunderstorm' ||weatherDescription==='thunderstorm with light rain' "></i>
+    <i class="wi wi-snow" ng-if="weatherDescription==='snow'"></i>
+    <i class="wi wi-smog" ng-if="weatherDescription==='mist'"></i>
+    <i class="wi wi-day-haze" ng-if="weatherDescription==='haze'"></i>
+    <i class="wi wi-sandstorm" ng-if="weatherDescription==='sand'"></i>
+</div>
+
+ 

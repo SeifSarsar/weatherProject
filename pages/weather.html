@@ -15,7 +15,7 @@
                                 <h4 class="card-text">{{weather.tempInCelcius}}&deg C</h4>
                               </div>
 
-                               <current-weather-icons class="col-md-5 col-sm-4 text-left mr-0"></current-weather-icons>
+                               <weather-icons weather-description="weather.weatherDescription" class="col-md-5 col-sm-4 text-left mr-0"></weather-icons>
 
                               <div class="col-md-10 col-sm-10">
                                   <a ng-show="weather.displayInfo===false" ng-click="weather.callExtraInformation()"><i id="downArror"class="fa fa-chevron-down"></i></a>
@@ -69,7 +69,7 @@
                     <div class="col-md-12 text-center" ng-class="{'hot':weatherADay.meanTemperature>=30 , 'warm':weatherADay.meanTemperature<30 && weatherADay.meanTemperature>=20 , 'cold': weatherADay.meanTemperature<20}">
                         <div class="row">  
                             <div class="col-md-12 pt-2  ">
-                            <forecast-weather-icons></forecast-weather-icons> <!--Icon -->
+                            <weather-icons weather-description="weatherADay.description"></weather-icons> <!--Icon -->
                             </div>
                         </div>
 

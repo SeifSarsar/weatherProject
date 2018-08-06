@@ -11,18 +11,20 @@
 }
 
 
-current-weather-icons{
+weather-icons{
     font-size: 15px;
 }
 
-forecast-weather-icons{
+#separated weather-icons{
     font-size: 10px; 
 }
+
 span{
     
     position:relative;
     top:25px
 }
+
 a:hover{
    cursor: pointer; 
    text-decoration: none;
