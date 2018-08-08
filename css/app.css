@@ -5,11 +5,23 @@
     padding-bottom: 0px;
 }
 
+
 .wi{
     font-size: 4.5em;
-    padding:5px
+    padding:5px;
 }
 
+.matchingCities{
+    height : 40px;
+    margin-bottom: 1px;
+    padding: 6px 0px 0px 15px;
+    
+}
+
+.matchingCities:hover{
+    cursor: pointer;
+    background-color:#f8f9fa;
+}
 
 weather-icons{
     font-size: 15px;
