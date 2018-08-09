@@ -23,6 +23,11 @@
     background-color:#f8f9fa;
 }
 
+#activeSuggestion {
+    
+    background-color:#f8f9fa;
+}
+
 weather-icons{
     font-size: 15px;
 }

@@ -38,7 +38,21 @@ function WeatherCtrl ($scope,CityService,WeatherQueryService,GoogleQueryService,
         }
         
         console.log(adjustedCityName);
+        
         vm.city=adjustedCityName;
+        vm.cityWithoutCountry = cutCityName(adjustedCityName);
+    }
+    
+    function cutCityName (city){
+        
+        var cuttingPosition = city.search(",")
+        if (cuttingPosition != -1){
+            return city.substring(0,cuttingPosition);
+        }
+        else {
+            return city;
+        }
+        
     }
     /*********************************************************************************/
     

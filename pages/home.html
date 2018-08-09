@@ -4,16 +4,18 @@
         <form>
             <div class="row">
                 <div class="form-group col-md-6">
-                        <input  id="homeInput" type="text" class="form-control" ng-model="home.city"/>
-                        <div class="card " ng-repeat="city in home.matchingCities">
+                        <input  id="homeInput" type="text" class="form-control" autocomplete="off" ng-model="home.city" ng-keyup="home.keyPress($event)"/>
+                        <div class="card" ng-repeat="city in home.matchingCities" ng-class="city">
                              <div class="card-body matchingCities" ng-click="home.choseCity(city)">{{city}}</div>
                         </div>
                 </div>
 
-                <div class="col-md-4 submit"><input type="Submit" value="Get Weather" ui-sref="forecast" class="btn btn-light" ng-class="{'disabledButton':home.city===''}" ng-disabled="home.city===''">
+                <div class="col-md-2"><input type="Submit" value="Get Weather" ui-sref="forecast" class="btn btn-light" ng-class="{'disabledButton':home.city===''}" ng-disabled="home.city===''">
                 </div>
+            
             </div>
         </form>
+       
     </div>
     
     
