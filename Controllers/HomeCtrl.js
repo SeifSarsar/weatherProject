@@ -9,9 +9,11 @@ function HomeCtrl($scope,CityService,$interval,worldCitiesService){
     var position;
     var cities = worldCitiesService.getInstance().fetchAllCities();
     vm.city = CityService.city;
-    vm.iso= "";
+    var isRemovable = null;
+    
     $scope.$watch('home.city',function(){  //si city dans le scope change, executer la fonction
         position = -1;
+        isRemovable = false;
         vm.matchingCities = [];
         CityService.city = vm.city;
         for (var i = 0 ; i < cities.length ; i++){
@@ -39,34 +41,41 @@ function HomeCtrl($scope,CityService,$interval,worldCitiesService){
         document.getElementById("homeInput").focus();
     }
     
+   
     vm.keyPress = function (event){
-        
-       
-        console.log(event.keyCode);
-        switch (event.keyCode){
-                
-            case 38:
-                
-                //keyup
-                if (position >= 1){
-                    console.log(document.getElementsByClassName(vm.matchingCities[position])[0]);
-                    document.getElementsByClassName(vm.matchingCities[position])[0].removeAttribute("id");
-                    position = position -1;
-                }
-                console.log(document.getElementsByClassName(vm.matchingCities[position])[0]);
-                document.getElementsByClassName(vm.matchingCities[position])[0].setAttribute("id","activeSuggestion");
-                break;
-        
-            case 40:
-                //keydown
-                if (position < vm.matchingCities.length){
-                    console.log(document.getElementsByClassName(vm.matchingCities[position])[0]);
-                    document.getElementsByClassName(vm.matchingCities[position])[0].removeAttribute("id");
-                    position = position +1;
-                }
-                console.log(document.getElementsByClassName(vm.matchingCities[position])[0]);
-                document.getElementsByClassName(vm.matchingCities[position])[0].setAttribute("id","activeSuggestion");
-                break;        
+        if (vm.city != ""){
+            switch (event.keyCode){
+                    
+                case 38:
+                    //keyup
+                    if (position >= 1){
+                        if (isRemovable)
+                            document.getElementsByClassName(vm.matchingCities[position])[0].removeAttribute("id");
+                        position = position -1;
+                    }
+                    document.getElementsByClassName(vm.matchingCities[position])[0].setAttribute("id","activeSuggestion");
+                    isRemovable = true;
+                    break;
+
+                case 40:
+                    //keydown
+                    if (position < vm.matchingCities.length - 1){
+                        if (isRemovable)
+                            document.getElementsByClassName(vm.matchingCities[position])[0].removeAttribute("id");
+                        position = position +1;
+                    }
+                    document.getElementsByClassName(vm.matchingCities[position])[0].setAttribute("id","activeSuggestion");
+                    isRemovable = true;
+                    break;
+
+                case 39: 
+                    if (position >= 0){
+                        vm.city = vm.matchingCities[position];
+                        vm.matchingCities = [];
+                    }
+                    break;
+
+            }
         }
     }
 }   
