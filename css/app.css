@@ -117,7 +117,7 @@ a:hover{
 }
 
 .disabledButton{
-    background-color: #bebebe;
+    opacity:0.7;
     pointer-events: none;
 }
 
@@ -154,3 +154,50 @@ a:hover{
     
     background-color: #cce5ff;
 }
+
+.reviews{
+    width: 600px;
+    margin-top: 80px;
+}
+
+textarea::placeholder{
+    font-size:15px;
+}
+
+
+.textreview textarea{
+    height:100px;
+    resize: none;
+}
+.buttonsreview .btn{
+    height:50px;
+    width:100%;
+}
+
+.dropdown-content{
+    cursor:pointer;
+    display: none;
+}
+.dropdown-content.show{
+    display:block;
+}
+.dropdown-content div:hover {
+    color : white;
+    background-color : #343a40;
+    
+    
+}
+
+.checked{
+    color:orange;
+}
+
+.fa-trash{
+    cursor:pointer;
+    opacity:0.7;
+}
+
+.fa-trash:hover{
+    opacity:1;
+}
+

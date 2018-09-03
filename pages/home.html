@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row ">
     <div class="col-md-12 col-md-offset-3 ml-3">
         <h4>Weather By City</h4>
         <form>
@@ -10,7 +10,7 @@
                         </div>
                 </div>
 
-                <div class="col-md-2"><input type="Submit" value="Get Weather" ui-sref="forecast" class="btn btn-light" ng-class="{'disabledButton':home.city===''}" ng-disabled="home.city===''">
+                <div class="col-md-2"><input type="Submit" value="Get Weather" ui-sref="forecast" class="btn btn-light" ng-disabled="home.city===''">
                 </div>
             
             </div>
@@ -19,5 +19,46 @@
     </div>
     
     
-<div>
+</div>
+
+<div class="reviews col-md-12 pl-0">
+    <h5>Reviews</h5>
     
+    <div class="card mb-2 "  ng-repeat="comment in home.comments">
+        <div class="card-body pb-0 pt-1">
+            <div class = "row">
+                <h5 class="card-title mb-1 col-md-10">{{comment.user}}</h5>
+                <h5 class="card-title mb-1 col-md-2 text-right"><div class="fa fa-trash" ng-click="home.deleteComment(comment)"></div></h5>
+            </div>
+            <p class="card-text mb-0">{{comment.text}}</p>
+            <div class="starsReview">
+                <div class = "fa fa-star checked" ng-repeat = "i in comment.starsArray track by $index"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+    
+        
+        <div class="buttonsreview col-md-2 p-0 float-left">
+            <input class="btn btn-dark" type="submit" value="Submit" ng-click="home.addComment()" ng-disabled="home.newComment.text.length < 5 || home.newComment.review == null">
+            <div class="dropdown">
+                <div class="btn btn-outline-dark dropdown-toggle" ng-click = "home.showDropdown()" ><div class="fa fa-star"></div></div>
+                <div class="dropdown-content bg-light">
+                    <div class="dropdown-item text-center" ng-click = "home.setReview(1)">1</div>
+                    <div class="dropdown-item text-center" ng-click = "home.setReview(2)">2</div>
+                    <div class="dropdown-item text-center" ng-click = "home.setReview(3)">3</div>
+                    <div class="dropdown-item text-center" ng-click = "home.setReview(4)">4</div>
+                    <div class="dropdown-item text-center" ng-click = "home.setReview(5)">5</div>
+                </div>
+            </div>
+        </div>
+        <div class="textreview col-md-10 p-0 float-right">
+                <textarea class="form-control" id="writeComment" placeholder="Maximum of 125 characters" maxlength="125" ng-model ="home.newComment.text"></textarea>
+        </div>
+    
+    </div>
+        
+
+</div>
+

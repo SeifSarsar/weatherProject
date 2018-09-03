@@ -1,10 +1,19 @@
-
 angular.module('weatherApp').controller('HomeCtrl',HomeCtrl);
                                                     
-HomeCtrl.$inject=['$scope','CityService','$interval','worldCitiesService'];
+HomeCtrl.$inject=['$scope','$http','CityService','$interval','worldCitiesService'];
                                         
-function HomeCtrl($scope,CityService,$interval,worldCitiesService){  
+function HomeCtrl($scope,$http,CityService,$interval,worldCitiesService){ 
     var vm = this;
+    vm.comments = [];
+    vm.newComment = {
+        user : "Unknown",
+        text : "",
+        review : null
+    };
+
+    
+    getCommentsFromDB();
+    
     vm.matchingCities = [];
     var position;
     var cities = worldCitiesService.getInstance().fetchAllCities();
@@ -77,5 +86,63 @@ function HomeCtrl($scope,CityService,$interval,worldCitiesService){
 
             }
         }
+    }
+    vm.showDropdown = function(){
+        document.querySelector(".dropdown-content").classList.toggle("show");
+    }
+    vm.setReview = function (review){
+        vm.review = review;
+        vm.newComment.review = review;
+        document.querySelector(".dropdown-toggle").innerHTML = review;
+        document.querySelector(".dropdown-content").classList.toggle("show");   
+    }
+    
+    function setStarsForEachComments(){
+        for (var i = 0 ; i < vm.comments.length ; i++){
+            vm.comments[i].starsArray = new Array();
+            vm.comments[i].starsArray.length = vm.comments[i].review;
+        }
+    }
+   
+    vm.addComment = function(){
+        $http(
+        {
+           method: 'POST',
+           url: '/home', 
+           data: vm.newComment
+        });
+        
+        getCommentsFromDB();
+        
+        document.querySelector(".dropdown-toggle").innerHTML = "<div class = 'fa fa-star'</div>";
+    }
+    
+    function getCommentsFromDB(){
+        $http({
+              method: 'GET',
+              url: '/home'
+            })
+        .then(function successCallback(response) {
+                console.log("Fetched successfully data from DB");
+                vm.newComment.text = "";
+                vm.newComment.review = null;
+                vm.comments = response.data;
+                setStarsForEachComments();
+            
+              }, function errorCallback(response) {
+                console.log("Error fetching data from DB");
+              });
+    }
+    
+    vm.deleteComment = function(comment){
+        $http(
+        {
+           method: 'POST',
+           url: '/home', 
+           data: comment
+        });
+        
+        getCommentsFromDB();
+        
     }
 }   

@@ -10,7 +10,7 @@ var intervalDrop;
 var deplacement=10;
 function Character(positionX){
     this.size=30;
-    this.state="white";
+    this.state="black";
     this.positionX=positionX;
 };
 var rainSpeed=1000; //1 drop per sec
@@ -60,7 +60,7 @@ window.onload=function(){
 
 
 function drawMap(){
-    canvasContext.fillStyle="black";
+    canvasContext.fillStyle="white";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
 }
 
@@ -166,9 +166,9 @@ function touchFire(){
     }
     else if (character.state=="blue"){
         
-        character.state="white";
+        character.state="black";
     }
-    else if (character.state=="white"){
+    else if (character.state=="black"){
         character.state="orange";
         
         var gameOverTimeout=setTimeout(function(){
@@ -189,25 +189,25 @@ function touchWater(){
     if(character.state=="orange"){
         
         isBlessed=true;
-        character.state="white";
+        character.state="black";
     }
     else if (character.state=="blue"){
         isImmuned=true;
         character.state="blue";
         immunisationTimeout=setTimeout(function(){
             if (isImmuned){
-                character.state="white";
+                character.state="black";
                 isImmuned=false;
             }
         },2000);
         
     }
-    else if (character.state=="white"){
+    else if (character.state=="black"){
         isImmuned=true;
         character.state="blue";
         immunisationTimeout=setTimeout(function(){
             if (isImmuned){
-                character.state="white";
+                character.state="black";
                 isImmuned=false;
             }
         },2000);

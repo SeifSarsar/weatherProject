@@ -1,15 +1,17 @@
 var weatherApp = angular.module('weatherApp', ['ui.router', 'ngResource','ngAnimate']); 
 
 
-weatherApp.config(function($stateProvider){
+weatherApp.config(function($stateProvider,$locationProvider){
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix("");
     $stateProvider
     .state('welcome',{
-        url:'',
+        url:'/',
         templateUrl:'pages/welcome.html',
         controller:'WelcomeCtrl'
     })
      .state('home',{
-        url:'/',
+        url:'/home',
         templateUrl:'pages/home.html',
         controller:'HomeCtrl',
         controllerAs: 'home'
